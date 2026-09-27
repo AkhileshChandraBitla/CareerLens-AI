@@ -7,7 +7,7 @@ CareerLens AI is an AI-assisted web application that analyzes a candidate's resu
 It combines semantic similarity analysis with technical skill matching to estimate how well a resume aligns with a particular job and provides actionable suggestions for improvement.
 ## 🖥️ Application Preview
 
-![CareerLens AI Dashboard](screenshots/careerlens-dashboard.png)
+![CareerLens AI Dashboard](screenshot/careerlens-dashboard.png)
 
 ---
 
