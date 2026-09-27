@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CareerLens AI</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <div class="brand">CareerLens <span>AI</span></div>
+    <div class="tagline">Resume intelligence & job matching</div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">AI-ASSISTED CAREER ANALYTICS</p>
+      <h1>Know how well your resume fits the role.</h1>
+      <p class="hero-copy">Upload a resume, paste a job description, and get semantic relevance, skill coverage, missing skills, and practical improvement suggestions.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="grid">
+      <div>
+        <label>Resume</label>
+        <div class="upload">
+          <input id="resume" type="file" accept=".pdf,.docx">
+          <span id="fileName">Choose PDF or DOCX</span>
+        </div>
+      </div>
+      <div>
+        <label>Job description</label>
+        <textarea id="job" placeholder="Paste the complete job description here..."></textarea>
+      </div>
+    </div>
+    <button id="analyze">Analyze Match</button>
+    <div id="status" class="status"></div>
+  </section>
+
+  <section id="results" class="hidden">
+    <div class="metrics">
+      <div class="metric"><span>Overall Match</span><strong id="score">—</strong></div>
+      <div class="metric"><span>Semantic Relevance</span><strong id="semantic">—</strong></div>
+      <div class="metric"><span>Skill Coverage</span><strong id="coverage">—</strong></div>
+    </div>
+
+    <div class="two">
+      <div class="panel">
+        <h2>Matched skills</h2>
+        <div id="matched" class="chips"></div>
+      </div>
+      <div class="panel">
+        <h2>Skill gaps</h2>
+        <div id="missing" class="chips"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Recommendations</h2>
+      <ul id="suggestions"></ul>
+    </div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
