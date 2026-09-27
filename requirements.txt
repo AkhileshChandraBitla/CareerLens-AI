@@ -3,6 +3,5 @@ uvicorn[standard]
 python-multipart
 pypdf
 python-docx
-sentence-transformers
 scikit-learn
 jinja2

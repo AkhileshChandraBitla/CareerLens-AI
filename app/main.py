@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from pathlib import Path
 from pypdf import PdfReader
 from docx import Document
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
 import tempfile
@@ -135,9 +135,7 @@ ALIASES = {
 # AI MODEL
 # ---------------------------------------------------------
 
-model = SentenceTransformer(
-    "sentence-transformers/all-MiniLM-L6-v2"
-)
+
 
 
 # ---------------------------------------------------------
@@ -245,33 +243,25 @@ def find_skills(text: str) -> list[str]:
 # SEMANTIC SIMILARITY
 # ---------------------------------------------------------
 
-def semantic_score(
-    resume: str,
-    job: str
-) -> float:
-
-    embeddings = model.encode(
-        [
-            normalize(resume)[:12000],
-            normalize(job)[:12000]
-        ]
+def semantic_score(resume: str, job: str) -> float:
+    vectorizer = TfidfVectorizer(
+        stop_words="english",
+        max_features=5000
     )
+
+    vectors = vectorizer.fit_transform([
+        normalize(resume)[:12000],
+        normalize(job)[:12000]
+    ])
 
     similarity = float(
         cosine_similarity(
-            [embeddings[0]],
-            [embeddings[1]]
+            vectors[0:1],
+            vectors[1:2]
         )[0][0]
     )
 
-    return max(
-        0.0,
-        min(
-            1.0,
-            similarity
-        )
-    )
-
+    return max(0.0, min(1.0, similarity))
 
 # ---------------------------------------------------------
 # BUILD ANALYSIS
